@@ -1,0 +1,79 @@
+@model IEnumerable<Internet.Models.Supplier>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link href="~/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/css/tiny-slider.css" rel="stylesheet">
+<link href="~/css/style.css" rel="stylesheet">
+
+<h1 class="mt-3">Supplier List</h1>
+
+<form asp-controller="Supplier" asp-action="FuzzySearch" method="get" class="mb-2">
+    <div class="input-group">
+        <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"
+            placeholder="Enter search keyword">
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+    </div>
+</form>
+
+<main class="main-content">
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

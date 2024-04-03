@@ -1,0 +1,71 @@
+@model Internet.Models.Contact
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+
+    <label class="text-black" for="Message">Send Message to Client</label>
+    <form method="post" asp-controller="Contact" asp-action="SendMessage">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="text-black" for="Fname">First name</label>@Html.DisplayNameFor(model => model.Fname)
+                    <input type="text" class="form-control" id="Fname" name="Fname" value="@Model.Fname" required />
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="text-black" for="Lname">Last name</label>
+                    <input type="text" class="form-control" id="Lname" name="Lname" value="@Model.Lname" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="text-black" for="Email">Email address</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required>
+        </div>
+
+        <div class="form-group mb-5">
+            <label class="text-black" for="Message">Message</label>
+            <textarea class="form-control" id="Message" name="Message" required cols="30" rows="5"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
+    </form>
+</div>
